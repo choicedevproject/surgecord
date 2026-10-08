@@ -3,10 +3,708 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surgecord</title>
+
+    <title>Surgecord — The Network</title>
+
+    <meta name="description"
+          content="Surgecord is a network of independent projects, software, and digital experiences established in 2025.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                         "Segoe UI", sans-serif;
+            background: #08090b;
+            color: #f5f5f7;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 72px;
+
+            background: rgba(8, 9, 11, 0.78);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .nav-inner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #a7a7ad;
+        }
+
+        .nav-links a {
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 0 100px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(70, 90, 130, 0.16),
+                    transparent 42%
+                );
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .eyebrow {
+            color: #8f8f96;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(64px, 11vw, 150px);
+            line-height: 0.9;
+            letter-spacing: -0.075em;
+            font-weight: 700;
+            margin-bottom: 34px;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            font-size: clamp(20px, 3vw, 28px);
+            color: #a8a8af;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-actions {
+            margin-top: 42px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: #f5f5f7;
+            color: #08090b;
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #f5f5f7;
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 130px 0;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .section-label {
+            color: #77777e;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            max-width: 800px;
+            font-size: clamp(38px, 6vw, 72px);
+            line-height: 1;
+            letter-spacing: -0.055em;
+            margin-bottom: 28px;
+        }
+
+        .section-text {
+            max-width: 680px;
+            color: #9b9ba2;
+            font-size: 19px;
+        }
+
+        /* MISSION */
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: end;
+        }
+
+        .free-stat {
+            border-left: 1px solid rgba(255,255,255,0.15);
+            padding-left: 30px;
+        }
+
+        .free-stat strong {
+            display: block;
+            font-size: clamp(55px, 8vw, 90px);
+            line-height: 1;
+            letter-spacing: -0.06em;
+        }
+
+        .free-stat span {
+            color: #8f8f96;
+            font-size: 14px;
+        }
+
+        /* PROJECTS */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 60px;
+        }
+
+        .project {
+            min-height: 330px;
+            padding: 34px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.045),
+                rgba(255,255,255,0.015)
+            );
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.18);
+
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.065),
+                rgba(255,255,255,0.02)
+            );
+        }
+
+        .project-number {
+            color: #686870;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+        }
+
+        .project h3 {
+            font-size: 30px;
+            letter-spacing: -0.04em;
+            margin-bottom: 10px;
+        }
+
+        .project-category {
+            color: #77777e;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 18px;
+        }
+
+        .project-description {
+            color: #9c9ca3;
+            font-size: 15px;
+            max-width: 460px;
+        }
+
+        .project-link {
+            margin-top: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* COMMUNITY */
+
+        .community {
+            text-align: center;
+            padding: 160px 20px;
+        }
+
+        .community .section-title {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .community .section-text {
+            margin: 0 auto;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 40px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            font-size: 13px;
+        }
+
+        .footer-copy {
+            color: #66666d;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 760px) {
+
+            .container {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            h1 {
+                font-size: clamp(58px, 17vw, 100px);
+            }
+
+            .mission-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .project {
+                min-height: 290px;
+            }
+
+            section {
+                padding: 90px 0;
+            }
+
+            .community {
+                padding: 110px 20px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Surgecord</h1>
-    <p>Independent technology, built for the long term.</p>
+
+    <nav>
+        <div class="container nav-inner">
+
+            <a href="#" class="brand">
+                SURGECORD
+            </a>
+
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#community">Community</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero">
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        The Surgecord Network · Est. 2025
+                    </div>
+
+                    <h1>
+                        SURGECORD
+                    </h1>
+
+                    <p class="hero-description">
+                        Combining helpful, useful, and life-improving
+                        projects, software, and digital experiences.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#projects"
+                           class="button button-primary">
+                            Explore the network
+                        </a>
+
+                        <a href="#about"
+                           class="button button-secondary">
+                            About Surgecord
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section id="about">
+            <div class="container">
+
+                <div class="mission-grid">
+
+                    <div>
+                        <div class="section-label">
+                            01 / The Foundation
+                        </div>
+
+                        <h2 class="section-title">
+                            Technology should improve life.
+                        </h2>
+
+                        <p class="section-text">
+                            Surgecord was established in 2025 as a network
+                            bringing together useful projects, software,
+                            digital experiences, and more.
+                        </p>
+                    </div>
+
+                    <div class="free-stat">
+
+                        <strong>99%</strong>
+
+                        <span>
+                            of our services are offered completely free,
+                            as part of our commitment to improving quality
+                            of life without requiring a monthly subscription.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section id="projects">
+            <div class="container">
+
+                <div class="section-label">
+                    02 / The Network
+                </div>
+
+                <h2 class="section-title">
+                    Projects built under Surgecord.
+                </h2>
+
+                <p class="section-text">
+                    Explore the projects, software, and experiences
+                    currently being developed across the network.
+                </p>
+
+
+                <div class="projects">
+
+                    <!-- TRUEARCHIVE -->
+
+                    <article class="project">
+
+                        <div>
+                            <div class="project-number">
+                                001
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="project-category">
+                                Digital Preservation
+                            </div>
+
+                            <h3>
+                                TrueArchive
+                            </h3>
+
+                            <p class="project-description">
+                                Explore Surgecord × TrueArchive's
+                                application and media preservation
+                                efforts through a private,
+                                exclusive platform.
+                            </p>
+                        </div>
+
+                        <a href="#"
+                           class="project-link">
+                            View project →
+                        </a>
+
+                    </article>
+
+
+                    <!-- FINSEC -->
+
+                    <article class="project">
+
+                        <div>
+                            <div class="project-number">
+                                002
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="project-category">
+                                Financial Technology
+                            </div>
+
+                            <h3>
+                                FinSec
+                            </h3>
+
+                            <p class="project-description">
+                                Surgecord's financial technology project,
+                                currently available as an Alpha release
+                                across supported platforms.
+                            </p>
+                        </div>
+
+                        <a href="#"
+                           class="project-link">
+                            View project →
+                        </a>
+
+                    </article>
+
+
+                    <!-- POKEMON -->
+
+                    <article class="project">
+
+                        <div>
+                            <div class="project-number">
+                                003
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="project-category">
+                                Game Development
+                            </div>
+
+                            <h3>
+                                Pokémon Dark Souls
+                            </h3>
+
+                            <p class="project-description">
+                                A fan-made project developed by the
+                                Surgecord Team. Follow development,
+                                roadmap progression, and upcoming builds.
+                            </p>
+                        </div>
+
+                        <a href="#"
+                           class="project-link">
+                            View project →
+                        </a>
+
+                    </article>
+
+
+                    <!-- DISCORD -->
+
+                    <article class="project">
+
+                        <div>
+                            <div class="project-number">
+                                004
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="project-category">
+                                Community
+                            </div>
+
+                            <h3>
+                                Surgecord Discord
+                            </h3>
+
+                            <p class="project-description">
+                                Join the Surgecord community to stay
+                                up to date with projects and try the
+                                current version of RetroWorld Bot.
+                            </p>
+                        </div>
+
+                        <a href="#"
+                           class="project-link">
+                            Join community →
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- COMMUNITY -->
+
+        <section id="community" class="community">
+
+            <div class="container">
+
+                <div class="section-label">
+                    03 / Community
+                </div>
+
+                <h2 class="section-title">
+                    Built together.
+                </h2>
+
+                <p class="section-text">
+                    Follow Surgecord's development, discover new projects,
+                    and become part of the community.
+                </p>
+
+                <div class="hero-actions"
+                     style="justify-content:center;">
+
+                    <a href="#"
+                       class="button button-primary">
+                        Join the Discord
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container footer-inner">
+
+            <div class="footer-brand">
+                SURGECORD
+            </div>
+
+            <div class="footer-copy">
+                The Surgecord Network · Established 2025 · © 2026
+            </div>
+
+        </div>
+
+    </footer>
+
 </body>
 </html>
