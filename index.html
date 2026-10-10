@@ -1,66 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Surgecord — The Network</title>
+
   <meta
     name="description"
-    content="Surgecord is a network of projects, software, and digital experiences built to improve everyday life."
-  >
+    content="Surgecord is a network of software, digital experiences, preservation projects, and community-driven innovation."
+  />
+
+  <meta name="theme-color" content="#0b0c0f" />
 
   <style>
     :root {
-      --bg: #08090b;
-      --bg-soft: #0d0f12;
-      --card: rgba(255, 255, 255, 0.035);
-      --card-hover: rgba(255, 255, 255, 0.055);
+      --background: #0b0c0f;
+      --surface: #111318;
+      --surface-hover: #161920;
+      --text: #f5f6f8;
+      --muted: #9a9eaa;
+      --accent: #8ab4ff;
       --border: rgba(255, 255, 255, 0.09);
-      --border-strong: rgba(255, 255, 255, 0.14);
-
-      --text: #f5f7fa;
-      --text-soft: #a8adb7;
-      --text-muted: #6f7580;
-
-      --accent: #6d8cff;
-      --accent-soft: rgba(109, 140, 255, 0.12);
-
       --radius: 20px;
-      --max-width: 1180px;
+      --max-width: 1120px;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 100px;
     }
 
     body {
+      background: var(--background);
+      color: var(--text);
       font-family:
         -apple-system,
         BlinkMacSystemFont,
         "SF Pro Display",
-        "SF Pro Text",
-        Inter,
-        Helvetica,
-        Arial,
+        "Segoe UI",
         sans-serif;
-
-      background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(109, 140, 255, 0.09),
-          transparent 38%
-        ),
-        var(--bg);
-
-      color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -69,55 +55,69 @@
       text-decoration: none;
     }
 
-    button {
-      font: inherit;
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     .container {
-      width: min(calc(100% - 40px), var(--max-width));
+      width: min(var(--max-width), calc(100% - 48px));
       margin: 0 auto;
     }
 
     /* NAVIGATION */
 
-    nav {
-      position: fixed;
+    .nav {
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
       z-index: 100;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-
-      background: rgba(8, 9, 11, 0.78);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      background: rgba(11, 12, 15, 0.86);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
-      height: 70px;
-
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 28px;
     }
 
-    .logo {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 15px;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 29px;
+      height: 29px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(138, 180, 255, 0.4);
+      border-radius: 9px;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 800;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
-
-      color: var(--text-soft);
-      font-size: 13px;
+      justify-content: flex-end;
+      gap: 27px;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
+      color: var(--muted);
+      font-size: 12px;
       transition: color 0.2s ease;
     }
 
@@ -128,666 +128,732 @@
     /* HERO */
 
     .hero {
-      min-height: 88vh;
+      position: relative;
+      overflow: hidden;
+      padding: 132px 0 125px;
+      border-bottom: 1px solid var(--border);
+    }
 
-      display: flex;
-      align-items: center;
-
-      padding-top: 70px;
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 420px;
+      top: -220px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        ellipse,
+        rgba(95, 135, 210, 0.12),
+        transparent 70%
+      );
+      pointer-events: none;
     }
 
     .hero-content {
-      max-width: 850px;
+      position: relative;
+      max-width: 830px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-
-      color: var(--text-muted);
-
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.13em;
+      margin-bottom: 26px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-
-      margin-bottom: 24px;
     }
 
-    .eyebrow::before {
-      content: "";
-
-      width: 6px;
-      height: 6px;
-
+    .status-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--accent);
+      background: #83c9a3;
+      box-shadow: 0 0 0 4px rgba(131, 201, 163, 0.09);
     }
 
-    .hero h1 {
-      font-size: clamp(64px, 12vw, 150px);
-      line-height: 0.88;
-
-      letter-spacing: -0.065em;
-      font-weight: 700;
-
-      margin-bottom: 34px;
+    h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 1.04;
+      letter-spacing: -0.075em;
+      font-weight: 750;
     }
 
     .hero-description {
-      max-width: 650px;
-
-      color: var(--text-soft);
-
-      font-size: clamp(18px, 2.2vw, 24px);
-      line-height: 1.45;
-
-      margin-bottom: 38px;
+      max-width: 630px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: clamp(15px, 2vw, 18px);
+      line-height: 1.9;
     }
 
-    .buttons {
+    .hero-actions {
       display: flex;
-      flex-wrap: wrap;
+      justify-content: center;
       gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 35px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
-      min-height: 46px;
-      padding: 0 20px;
-
+      gap: 10px;
+      min-height: 45px;
+      padding: 0 19px;
       border: 1px solid var(--border);
       border-radius: 12px;
-
-      font-size: 13px;
-      font-weight: 600;
-
+      font-size: 12px;
+      font-weight: 650;
       transition:
+        transform 0.2s ease,
         background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
+        border-color 0.2s ease;
     }
 
     .button:hover {
-      background: var(--card-hover);
-      border-color: var(--border-strong);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
-    .button.primary {
+    .button-primary {
+      color: #0b0c0f;
       background: var(--text);
       border-color: var(--text);
-      color: #08090b;
     }
 
-    .button.primary:hover {
-      background: #ffffff;
+    .button-primary:hover {
+      background: #dfe4ed;
     }
 
-    /* GENERAL SECTIONS */
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    /* SHARED SECTION STYLES */
 
     section {
-      padding: 120px 0;
-      scroll-margin-top: 70px;
+      scroll-margin-top: 100px;
     }
 
-    .section-header {
-      margin-bottom: 52px;
+    .section {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .section-number {
-      color: var(--text-muted);
+    .section-heading {
+      max-width: 670px;
+      margin-bottom: 43px;
+    }
 
-      font-size: 11px;
+    .section-label {
+      margin-bottom: 13px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(32px, 5vw, 47px);
+      line-height: 1.15;
+      letter-spacing: -0.055em;
       font-weight: 700;
-      letter-spacing: 0.16em;
-
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1;
-      letter-spacing: -0.045em;
     }
 
     .section-description {
-      max-width: 650px;
-
-      color: var(--text-soft);
-
-      font-size: 17px;
-      line-height: 1.65;
-
-      margin-top: 20px;
+      margin-top: 17px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
     }
 
     /* ABOUT */
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 30px;
+      grid-template-columns: 1.4fr 0.6fr;
+      align-items: start;
+      gap: 65px;
     }
 
-    .about-main,
-    .stat-card {
+    .about-copy p {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .about-stat {
+      padding: 29px;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-
-      background: var(--card);
-    }
-
-    .about-main {
-      padding: 46px;
-    }
-
-    .about-main h3 {
-      max-width: 680px;
-
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-
-      margin-bottom: 24px;
-    }
-
-    .about-main p {
-      max-width: 680px;
-
-      color: var(--text-soft);
-      font-size: 16px;
-    }
-
-    .stat-card {
-      padding: 46px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.045),
+        rgba(255, 255, 255, 0.012)
+      );
     }
 
     .stat-number {
-      font-size: clamp(64px, 8vw, 100px);
-      line-height: 0.9;
-
-      letter-spacing: -0.06em;
-      font-weight: 700;
+      font-size: 51px;
+      line-height: 1.2;
+      font-weight: 750;
+      letter-spacing: -0.07em;
     }
 
     .stat-label {
-      color: var(--text-soft);
-      font-size: 14px;
-      margin-top: 30px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
     }
 
-    /* PROJECTS */
+    /* NETWORK / PROJECT CARDS */
 
-    .projects-grid {
+    .project-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
     }
 
     .project-card {
-      min-height: 280px;
-
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-
-      padding: 32px;
-
+      align-items: flex-start;
+      min-height: 250px;
+      padding: 27px;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-
-      background: var(--card);
-
+      background: var(--surface);
       transition:
+        transform 0.25s ease,
         background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
+        border-color 0.25s ease;
     }
 
     .project-card:hover {
-      background: var(--card-hover);
-      border-color: var(--border-strong);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      background: var(--surface-hover);
+      border-color: rgba(138, 180, 255, 0.28);
     }
 
     .project-number {
-      color: var(--text-muted);
-
-      font-size: 11px;
-      font-weight: 700;
+      color: #777d89;
+      font-size: 10px;
       letter-spacing: 0.14em;
     }
 
-    .project-card h3 {
-      font-size: 27px;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
+    .project-category {
+      margin-top: 23px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
     }
 
-    .project-type {
-      color: var(--accent);
-
-      font-size: 11px;
+    .project-card h3 {
+      margin-top: 8px;
+      font-size: 23px;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-
-      margin-bottom: 14px;
+      letter-spacing: -0.045em;
     }
 
     .project-card p {
-      max-width: 520px;
-
-      color: var(--text-soft);
-      font-size: 14px;
-      line-height: 1.65;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
     }
 
-    /* PROJECT DETAIL */
-
-    .detail-section {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 650;
     }
 
-    .detail-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-
-      gap: 30px;
-
-      margin-bottom: 42px;
+    .text-link span {
+      color: var(--accent);
+      transition: transform 0.2s ease;
     }
 
-    .detail-title {
-      font-size: clamp(34px, 5vw, 54px);
-      letter-spacing: -0.045em;
-      line-height: 1;
+    .text-link:hover span {
+      transform: translateX(4px);
     }
 
-    .detail-subtitle {
-      color: var(--text-soft);
-      max-width: 620px;
+    /* DETAIL SECTIONS */
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 65px;
+      align-items: start;
+    }
+
+    .detail-copy {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .detail-copy p + p {
       margin-top: 16px;
     }
 
-    .status {
-      flex-shrink: 0;
-
-      padding: 8px 11px;
-
+    .detail-panel {
+      padding: 27px;
       border: 1px solid var(--border);
-      border-radius: 999px;
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
 
-      color: var(--text-soft);
+    .detail-panel h3 {
+      font-size: 17px;
+      letter-spacing: -0.025em;
+    }
 
+    .detail-panel > p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .panel-list {
+      display: grid;
+      gap: 0;
+      margin-top: 20px;
+    }
+
+    .panel-list li {
+      list-style: none;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+      color: #d6d8df;
+      font-size: 12px;
+    }
+
+    .panel-list li::before {
+      content: "↗";
+      margin-right: 10px;
+      color: var(--accent);
+    }
+
+    /* SURGECORD APPS */
+
+    .app-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .app-item {
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.018);
+    }
+
+    .app-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .app-item p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .app-item a {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 650;
+    }
+
+    /* WORKPLACE COMING SOON */
+
+    .workplace-banner {
+      position: relative;
+      overflow: hidden;
+      padding: 38px;
+      border: 1px solid rgba(138, 180, 255, 0.19);
+      border-radius: 24px;
+      background:
+        radial-gradient(
+          ellipse at top right,
+          rgba(91, 129, 198, 0.11),
+          transparent 60%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(255, 255, 255, 0.01)
+        );
+    }
+
+    .workplace-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .release-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #dfe4ed;
       font-size: 10px;
       font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .coming-soon {
+      color: #d8c89b;
+      font-size: 10px;
+      font-weight: 750;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    /* DOWNLOADS */
-
-    .download-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-
-      margin-bottom: 60px;
+    .workplace-banner h3 {
+      margin-top: 34px;
+      font-size: clamp(30px, 5vw, 43px);
+      line-height: 1.15;
+      letter-spacing: -0.06em;
     }
 
-    .download-card {
-      padding: 28px;
-
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-
-      background: var(--card);
+    .workplace-tagline {
+      margin-top: 10px;
+      color: #dce1eb;
+      font-size: 15px;
+      font-weight: 550;
     }
 
-    .download-version {
-      font-size: 25px;
-      font-weight: 650;
-      letter-spacing: -0.025em;
-    }
-
-    .download-channel {
-      display: inline-block;
-
-      color: var(--accent);
-
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-
-      margin-top: 7px;
-    }
-
-    .download-platforms {
-      color: var(--text-soft);
-
+    .workplace-description {
+      max-width: 630px;
+      margin-top: 16px;
+      color: var(--muted);
       font-size: 13px;
-
-      margin: 22px 0;
+      line-height: 1.95;
     }
 
-    .download-button {
-      width: 100%;
+    .workplace-features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
 
+    .workplace-feature {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .workplace-feature strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .workplace-feature span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .workplace-actions {
       display: flex;
       align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 29px;
+    }
+
+    .disabled-button {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-
-      min-height: 42px;
-
+      min-height: 45px;
+      padding: 0 18px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-
-      color: var(--text);
-
+      border-radius: 11px;
+      color: #777d89;
+      background: rgba(255, 255, 255, 0.025);
       font-size: 12px;
-      font-weight: 600;
-
-      transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+      font-weight: 650;
+      cursor: not-allowed;
     }
 
-    .download-button:hover {
-      background: var(--card-hover);
-      border-color: var(--border-strong);
-    }
-
-    /* VERSION HISTORY */
-
-    .history {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-
-      overflow: hidden;
-
-      background: var(--card);
-    }
-
-    .history-header {
-      padding: 25px 28px;
-
-      border-bottom: 1px solid var(--border);
-    }
-
-    .history-header h3 {
-      font-size: 18px;
-      letter-spacing: -0.02em;
-    }
-
-    .history-list {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .history-item {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-
-      gap: 20px;
-
-      padding: 19px 28px;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.055);
-    }
-
-    .history-item:last-child {
-      border-bottom: 0;
-    }
-
-    .history-version {
-      color: var(--text);
-
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .history-note {
-      color: var(--text-soft);
-      font-size: 13px;
+    .availability-note {
+      color: var(--muted);
+      font-size: 11px;
     }
 
     /* ROADMAP */
 
     .roadmap {
+      display: grid;
+      gap: 0;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-
       overflow: hidden;
-
-      background: var(--card);
+      background: var(--surface);
     }
 
     .roadmap-header {
-      padding: 28px;
-
-      border-bottom: 1px solid var(--border);
-
       display: flex;
-      align-items: center;
       justify-content: space-between;
-
+      align-items: center;
       gap: 20px;
+      flex-wrap: wrap;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .phase {
-      color: var(--accent);
+    .roadmap-header h3 {
+      font-size: 16px;
+    }
 
+    .roadmap-status {
+      color: #b9d9c6;
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-    }
-
-    .phase-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 6px;
     }
 
     .roadmap-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 10px 24px 20px;
+      column-gap: 35px;
     }
 
-    .roadmap-item {
-      min-height: 76px;
-
-      display: flex;
-      align-items: center;
-      gap: 16px;
-
-      padding: 18px 28px;
-
-      border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+    .roadmap-list li {
+      list-style: none;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: #c9cbd3;
+      font-size: 12px;
     }
 
-    .roadmap-item:nth-child(odd) {
-      border-right: 1px solid rgba(255, 255, 255, 0.055);
-    }
-
-    .roadmap-dot {
-      width: 7px;
-      height: 7px;
-
-      flex-shrink: 0;
-
-      border: 1px solid var(--text-muted);
-      border-radius: 50%;
-    }
-
-    .roadmap-text {
-      color: var(--text-soft);
-      font-size: 13px;
+    .roadmap-list li::before {
+      content: "—";
+      margin-right: 10px;
+      color: var(--accent);
     }
 
     /* COMMUNITY */
 
-    .community {
-      text-align: center;
+    .community-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      padding: 35px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(
+          ellipse at top right,
+          rgba(91, 129, 198, 0.09),
+          transparent 65%
+        ),
+        var(--surface);
     }
 
-    .community-content {
-      max-width: 720px;
-      margin: 0 auto;
+    .community-box h3 {
+      font-size: 23px;
+      letter-spacing: -0.04em;
     }
 
-    .community h2 {
-      font-size: clamp(42px, 7vw, 78px);
-      line-height: 0.95;
-
-      letter-spacing: -0.06em;
-
-      margin-bottom: 24px;
+    .community-box p {
+      max-width: 580px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
     }
 
-    .community p {
-      color: var(--text-soft);
-      font-size: 17px;
-
-      margin-bottom: 32px;
+    .community-actions {
+      flex-shrink: 0;
     }
 
     /* FOOTER */
 
     footer {
-      padding: 50px 0 35px;
-
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 31px 0;
     }
 
     .footer-inner {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-
+      align-items: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .footer-brand {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+    .footer-copy,
+    .footer-note {
+      color: #777d89;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    .footer-meta {
-      color: var(--text-muted);
-      font-size: 11px;
+    .footer-note a {
+      color: #b6bac5;
+    }
+
+    /* ANIMATIONS */
+
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-in {
+        animation: fadeUp 0.65s ease both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     }
 
     /* RESPONSIVE */
 
-    @media (max-width: 800px) {
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 34px, var(--max-width));
+      }
+
+      .nav-inner {
+        min-height: 70px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 11px;
+        padding: 13px 0;
+      }
+
       .nav-links {
-        gap: 15px;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 19px;
       }
 
-      .nav-links a:nth-child(2) {
-        display: none;
+      .nav-links a {
+        font-size: 11px;
       }
 
-      section {
-        padding: 90px 0;
+      .hero {
+        padding: 93px 0 85px;
+      }
+
+      .section {
+        padding: 75px 0;
       }
 
       .about-grid,
-      .projects-grid,
-      .download-grid {
+      .detail-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .project-grid {
         grid-template-columns: 1fr;
       }
 
-      .about-main,
-      .stat-card {
-        padding: 32px;
+      .project-card {
+        min-height: 225px;
       }
 
-      .detail-header {
-        align-items: flex-start;
-        flex-direction: column;
+      .workplace-banner {
+        padding: 24px;
+      }
+
+      .workplace-features {
+        grid-template-columns: 1fr;
       }
 
       .roadmap-list {
         grid-template-columns: 1fr;
       }
 
-      .roadmap-item:nth-child(odd) {
-        border-right: 0;
-      }
-
-      .history-item {
-        grid-template-columns: 110px 1fr;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .container {
-        width: min(calc(100% - 28px), var(--max-width));
-      }
-
-      .nav-inner {
-        height: 62px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: 78vh;
-        padding-top: 62px;
-      }
-
-      .hero h1 {
-        font-size: 62px;
-      }
-
-      .hero-description {
-        font-size: 17px;
-      }
-
-      .button {
-        width: 100%;
-      }
-
-      .project-card {
-        min-height: 250px;
-        padding: 26px;
-      }
-
-      .download-card {
+      .community-box {
+        align-items: flex-start;
+        flex-direction: column;
         padding: 25px;
       }
 
-      .history-item {
-        grid-template-columns: 1fr;
-        gap: 5px;
-        padding: 18px 22px;
+      .community-actions {
+        width: 100%;
       }
 
-      .roadmap-header,
-      .roadmap-item {
-        padding-left: 22px;
-        padding-right: 22px;
+      .community-actions .button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .nav-links {
+        gap: 13px;
+      }
+
+      .nav-links a {
+        font-size: 10px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .workplace-topline {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .footer-inner {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -797,55 +863,58 @@
 
   <!-- NAVIGATION -->
 
-  <nav>
+  <header class="nav">
     <div class="container nav-inner">
 
-      <a href="#top" class="logo">
-        SURGECORD
+      <a href="#home" class="brand" aria-label="Surgecord home">
+        <span class="brand-mark">S</span>
+        <span>SURGECORD</span>
       </a>
 
-      <div class="nav-links">
+      <nav class="nav-links" aria-label="Main navigation">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#finsec">FinSec</a>
+        <a href="#network">The Network</a>
+        <a href="#apps">Apps</a>
+        <a href="#workplace">Workplace</a>
         <a href="#pokemon">Pokémon</a>
         <a href="#community">Community</a>
-      </div>
+      </nav>
 
     </div>
-  </nav>
+  </header>
 
 
-  <main id="top">
+  <main>
 
     <!-- HERO -->
 
-    <section class="hero">
-      <div class="container">
+    <section class="hero" id="home">
+      <div class="container hero-content fade-in">
 
-        <div class="hero-content">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          THE SURGECORD NETWORK · ESTABLISHED 2025
+        </div>
 
-          <div class="eyebrow">
-            The Surgecord Network · Established 2025
-          </div>
+        <h1>
+          Built to make<br />
+          a difference.
+        </h1>
 
-          <h1>SURGE<br>CORD</h1>
+        <p class="hero-description">
+          Combining helpful, useful, and life-improving projects,
+          software, and digital experiences. Technology designed
+          around people, accessibility, and meaningful progress.
+        </p>
 
-          <p class="hero-description">
-            Combining helpful, useful, and life-improving projects,
-            software, and digital experiences.
-          </p>
+        <div class="hero-actions">
+          <a href="#network" class="button button-primary">
+            Explore the Network <span aria-hidden="true">↗</span>
+          </a>
 
-          <div class="buttons">
-            <a href="#projects" class="button primary">
-              Explore the network
-            </a>
-
-            <a href="#about" class="button">
-              About Surgecord
-            </a>
-          </div>
-
+          <a href="#about" class="button button-secondary">
+            About Surgecord
+          </a>
         </div>
 
       </div>
@@ -854,66 +923,48 @@
 
     <!-- ABOUT -->
 
-    <section id="about">
+    <section class="section" id="about">
       <div class="container">
-
-        <div class="section-header">
-
-          <div class="section-number">
-            01 · ABOUT
-          </div>
-
-          <h2 class="section-title">
-            Technology should<br>
-            improve life.
-          </h2>
-
-          <p class="section-description">
-            Surgecord is a network of projects built around useful,
-            accessible, and meaningful digital experiences.
-            Our goal is simple: build technology that provides value
-            without unnecessary barriers.
-          </p>
-
-        </div>
-
 
         <div class="about-grid">
 
-          <div class="about-main">
+          <div class="about-copy">
+            <div class="section-label">01 / About</div>
 
-            <h3>
-              Building useful things for the people who use them.
-            </h3>
-
-            <p>
-              Established in 2025, Surgecord brings together software,
-              preservation projects, games, communities, and other
-              digital experiences under one network.
-            </p>
-
-            <br>
+            <h2>
+              Technology should<br />
+              improve life.
+            </h2>
 
             <p>
-              We offer 99% of our services completely free as part of
-              our commitment to improving quality of life without
-              requiring a monthly subscription.
+              Surgecord is a network bringing together software,
+              digital tools, preservation initiatives, games,
+              and community projects.
             </p>
 
+            <p>
+              Established in 2025, our goal is to make useful
+              technology and digital experiences more accessible.
+              We believe great tools should not always require
+              expensive subscriptions or unnecessary barriers.
+            </p>
+
+            <p>
+              We offer 99% of our services completely free as
+              part of our commitment to improving quality of life
+              without requiring a monthly subscription.
+            </p>
           </div>
 
-
-          <div class="stat-card">
-
-            <div class="stat-number">
-              99%
-            </div>
+          <aside class="about-stat">
+            <div class="stat-number">99%</div>
 
             <div class="stat-label">
-              Of Surgecord services are intended to remain completely free.
+              Of our services offered completely free,
+              reflecting our commitment to accessible
+              digital experiences.
             </div>
-
-          </div>
+          </aside>
 
         </div>
 
@@ -921,145 +972,123 @@
     </section>
 
 
-    <!-- PROJECTS -->
+    <!-- THE NETWORK -->
 
-    <section id="projects">
+    <section class="section" id="network">
       <div class="container">
 
-        <div class="section-header">
+        <div class="section-heading">
+          <div class="section-label">02 / The Network</div>
 
-          <div class="section-number">
-            02 · PROJECTS
-          </div>
-
-          <h2 class="section-title">
-            The network.
+          <h2>
+            An ecosystem of ideas.
           </h2>
 
           <p class="section-description">
-            A growing collection of projects spanning software,
-            digital preservation, game development, and community.
+            Discover the projects, products, and communities
+            being developed across the Surgecord Network.
           </p>
-
         </div>
 
 
-        <div class="projects-grid">
+        <div class="project-grid">
 
-          <!-- TRUE ARCHIVE -->
+          <!-- TRUEARCHIVE -->
 
-          <a href="#truearchive" class="project-card">
+          <article class="project-card">
+            <div class="project-number">PROJECT 001</div>
 
-            <div class="project-number">
-              001
+            <div class="project-category">
+              Digital Preservation
             </div>
 
-            <div>
+            <h3>TrueArchive</h3>
 
-              <div class="project-type">
-                Digital Preservation
-              </div>
+            <p>
+              Explore TrueArchive's application and media
+              preservation efforts through its private,
+              exclusive platform.
+            </p>
 
-              <h3>
-                TrueArchive
-              </h3>
+            <a href="#truearchive" class="text-link">
+              Explore TrueArchive
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
 
-              <p>
-                Explore Surgecord × TrueArchive's application and
-                media preservation efforts through our private,
-                exclusive platform.
-              </p>
 
+          <!-- SURGECORD APPS -->
+
+          <article class="project-card">
+            <div class="project-number">PROJECT 002</div>
+
+            <div class="project-category">
+              Software & Productivity
             </div>
 
-          </a>
+            <h3>Surgecord Apps</h3>
 
+            <p>
+              Explore FinSecure, a finance-focused application,
+              and Workplace, the ultimate freelance statistics
+              tracking app built to help independent workers
+              understand their earnings, track their time,
+              and monitor their deliveries.
+            </p>
 
-          <!-- FINSEC -->
-
-          <a href="#finsec" class="project-card">
-
-            <div class="project-number">
-              002
-            </div>
-
-            <div>
-
-              <div class="project-type">
-                Financial Technology
-              </div>
-
-              <h3>
-                FinSec
-              </h3>
-
-              <p>
-                Try the Alpha version of Surgecord's FinSecure
-                application, built around private and useful
-                financial tools.
-              </p>
-
-            </div>
-
-          </a>
+            <a href="#apps" class="text-link">
+              Explore Surgecord Apps
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
 
 
           <!-- POKEMON -->
 
-          <a href="#pokemon" class="project-card">
+          <article class="project-card">
+            <div class="project-number">PROJECT 003</div>
 
-            <div class="project-number">
-              003
+            <div class="project-category">
+              Game Development
             </div>
 
-            <div>
+            <h3>Pokémon Dark Souls</h3>
 
-              <div class="project-type">
-                Game Development
-              </div>
+            <p>
+              A fan-made Pokémon project developed by the
+              Surgecord team, with original environments,
+              redesigned assets, and evolving gameplay.
+            </p>
 
-              <h3>
-                Pokémon Dark Souls
-              </h3>
+            <a href="#pokemon" class="text-link">
+              View Project Roadmap
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
 
-              <p>
-                A fan-made project developed by the Surgecord Team,
-                with redesigned worlds, characters, assets, and
-                upcoming playable builds.
-              </p>
 
+          <!-- COMMUNITY -->
+
+          <article class="project-card">
+            <div class="project-number">PROJECT 004</div>
+
+            <div class="project-category">
+              Community
             </div>
 
-          </a>
+            <h3>Surgecord Community</h3>
 
+            <p>
+              Follow project updates, connect with the
+              community, and explore the latest developments
+              across the Surgecord ecosystem.
+            </p>
 
-          <!-- DISCORD -->
-
-          <a href="#community" class="project-card">
-
-            <div class="project-number">
-              004
-            </div>
-
-            <div>
-
-              <div class="project-type">
-                Community
-              </div>
-
-              <h3>
-                Surgecord Discord
-              </h3>
-
-              <p>
-                Join the Surgecord community for project updates,
-                announcements, and access to the current version
-                of RetroWorld Bot.
-              </p>
-
-            </div>
-
-          </a>
+            <a href="#community" class="text-link">
+              Explore the Community
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
 
         </div>
 
@@ -1069,404 +1098,436 @@
 
     <!-- TRUEARCHIVE -->
 
-    <section id="truearchive" class="detail-section">
-
+    <section class="section" id="truearchive">
       <div class="container">
 
-        <div class="detail-header">
+        <div class="detail-layout">
 
           <div>
+            <div class="section-label">03 / Project 001</div>
 
-            <div class="section-number">
-              PROJECT 001
-            </div>
+            <h2>TrueArchive</h2>
 
-            <h2 class="detail-title">
-              TrueArchive
-            </h2>
-
-            <p class="detail-subtitle">
-              Application and media preservation through a private,
-              exclusive platform focused on maintaining access to
-              digital history.
+            <p class="section-description">
+              Preserve what matters.
             </p>
 
+            <div class="detail-copy">
+              <p>
+                TrueArchive focuses on application and media
+                preservation, bringing together a curated
+                experience for discovering archived digital
+                material.
+              </p>
+
+              <p>
+                The project aims to make digital preservation
+                accessible through an organized, premium
+                platform designed around discovery and usability.
+              </p>
+            </div>
           </div>
 
-          <div class="status">
-            In Development
+          <div class="detail-panel">
+            <h3>Digital Preservation</h3>
+
+            <p>
+              A dedicated platform for exploring preserved
+              applications, media, and useful digital resources.
+            </p>
+
+            <ul class="panel-list">
+              <li>Application preservation</li>
+              <li>Media and digital resources</li>
+              <li>Curated archive experience</li>
+              <li>Guides and reference material</li>
+            </ul>
           </div>
 
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- FINSEC -->
+    <!-- SURGECORD APPS -->
 
-    <section id="finsec" class="detail-section">
-
+    <section class="section" id="apps">
       <div class="container">
 
-        <div class="detail-header">
+        <div class="detail-layout">
 
           <div>
+            <div class="section-label">04 / Project 002</div>
 
-            <div class="section-number">
-              PROJECT 002
-            </div>
+            <h2>Surgecord Apps</h2>
 
-            <h2 class="detail-title">
-              FinSec Alpha
-            </h2>
-
-            <p class="detail-subtitle">
-              The Alpha version of Surgecord's FinSecure application.
-              Currently available for iOS, Windows, and macOS.
+            <p class="section-description">
+              Software designed around the way you work and live.
             </p>
 
+            <div class="detail-copy">
+              <p>
+                Surgecord Apps brings together software designed
+                to make financial management and everyday work
+                easier to understand and manage.
+              </p>
+
+              <p>
+                The ecosystem currently includes FinSecure,
+                a finance-focused application, and Workplace,
+                a freelance statistics tracking app.
+              </p>
+
+              <p>
+                Each product has its own purpose, development
+                roadmap, and future dedicated website.
+              </p>
+            </div>
           </div>
 
-          <div class="status">
-            Alpha
-          </div>
 
-        </div>
+          <div class="detail-panel">
+            <h3>Explore Our Applications</h3>
+
+            <p>
+              Discover the products being developed within
+              the Surgecord software ecosystem.
+            </p>
 
 
-        <!-- DOWNLOADS -->
+            <div class="app-list">
 
-        <div class="download-grid">
+              <div class="app-item">
+                <h4>FinSecure</h4>
 
-          <div class="download-card">
+                <p>
+                  A finance-focused application designed to
+                  help users understand and manage their
+                  financial information.
+                </p>
 
-            <div class="download-version">
-              v0.1.0.1
+                <!-- Replace # with the future FinSecure page URL. -->
+                <a href="#finsecure">
+                  Explore FinSecure →
+                </a>
+              </div>
+
+
+              <div class="app-item">
+                <h4>Workplace</h4>
+
+                <p>
+                  The ultimate freelance statistics tracking
+                  app for monitoring earnings, time spent
+                  working, and completed deliveries.
+                </p>
+
+                <a href="#workplace">
+                  Explore Workplace →
+                </a>
+              </div>
+
             </div>
 
-            <div class="download-channel">
-              ALPHA · STABLE
-            </div>
 
-            <div class="download-platforms">
-              iOS · Windows · macOS
-            </div>
-
-            <!-- Replace # with your actual download link -->
-            <a href="#" class="download-button">
-              Download
+            <!-- Replace # with the future Surgecord Apps page URL. -->
+            <a
+              href="#apps"
+              class="button button-secondary"
+              style="margin-top: 22px;"
+            >
+              Surgecord Apps
+              <span aria-hidden="true">↗</span>
             </a>
-
-          </div>
-
-
-          <div class="download-card">
-
-            <div class="download-version">
-              v0.1.0.32
-            </div>
-
-            <div class="download-channel">
-              ALPHA · EXPERIMENTAL
-            </div>
-
-            <div class="download-platforms">
-              iOS · Windows · macOS
-            </div>
-
-            <!-- Replace # with your actual download link -->
-            <a href="#" class="download-button">
-              Download
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- VERSION HISTORY -->
-
-        <div class="history">
-
-          <div class="history-header">
-            <h3>
-              Version History
-            </h3>
-          </div>
-
-          <div class="history-list">
-
-            <div class="history-item">
-
-              <div class="history-version">
-                v0.1.0.32
-              </div>
-
-              <div class="history-note">
-                Super Bug Fix · Experimental
-              </div>
-
-            </div>
-
-
-            <div class="history-item">
-
-              <div class="history-version">
-                v0.1.0.31
-              </div>
-
-              <div class="history-note">
-                Bill Bug Fix
-              </div>
-
-            </div>
-
-
-            <div class="history-item">
-
-              <div class="history-version">
-                v0.1.0.3
-              </div>
-
-              <div class="history-note">
-                Alpha Release
-              </div>
-
-            </div>
-
-
-            <div class="history-item">
-
-              <div class="history-version">
-                v0.1.0.1
-              </div>
-
-              <div class="history-note">
-                Initial Alpha · Stable
-              </div>
-
-            </div>
 
           </div>
 
         </div>
 
       </div>
+    </section>
 
+
+    <!-- FINSECURE -->
+
+    <section class="section" id="finsecure">
+      <div class="container">
+
+        <div class="detail-layout">
+
+          <div>
+            <div class="section-label">Product / FinSecure</div>
+
+            <h2>FinSecure</h2>
+
+            <p class="section-description">
+              A clearer view of your finances.
+            </p>
+
+            <div class="detail-copy">
+              <p>
+                FinSecure is part of the Surgecord Apps
+                ecosystem, focusing on financial information
+                and helping users better understand their
+                financial position.
+              </p>
+
+              <p>
+                Dedicated product information and download
+                resources will be published on its own
+                website as development progresses.
+              </p>
+            </div>
+
+            <div style="margin-top: 25px;">
+              <!-- Replace this URL when the dedicated page is published. -->
+              <a
+                href="#finsecure"
+                class="button button-secondary"
+              >
+                FinSecure Website
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+
+          <div class="detail-panel">
+            <h3>FinSecure Alpha</h3>
+
+            <p>
+              FinSecure development and release information
+              will be organized on the dedicated product page.
+            </p>
+
+            <ul class="panel-list">
+              <li>Product information</li>
+              <li>Release and version information</li>
+              <li>Download availability</li>
+              <li>Development updates</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WORKPLACE -->
+
+    <section class="section" id="workplace">
+      <div class="container">
+
+        <div class="section-heading">
+          <div class="section-label">Product / Workplace</div>
+
+          <h2>
+            Your work.<br />
+            Your numbers. Your progress.
+          </h2>
+
+          <p class="section-description">
+            A dedicated tracking experience for independent
+            workers who want a clearer understanding of
+            their work and performance.
+          </p>
+        </div>
+
+
+        <div class="workplace-banner">
+
+          <div class="workplace-topline">
+
+            <div class="release-badge">
+              WORKPLACE · v0.1.0.1 ALPHA
+            </div>
+
+            <div class="coming-soon">
+              <span aria-hidden="true">●</span>
+              &nbsp; Coming Soon
+            </div>
+
+          </div>
+
+
+          <h3>Meet Workplace.</h3>
+
+          <div class="workplace-tagline">
+            Freelance Statistics & Productivity
+          </div>
+
+          <p class="workplace-description">
+            Workplace is designed to help freelancers track
+            their earnings, time spent working, and completed
+            deliveries in one organized experience. Get a
+            clearer picture of your work through accessible
+            statistics and performance tracking.
+          </p>
+
+
+          <div class="workplace-features">
+
+            <div class="workplace-feature">
+              <strong>Earnings</strong>
+
+              <span>
+                Review earnings and understand your
+                work-related financial performance.
+              </span>
+            </div>
+
+            <div class="workplace-feature">
+              <strong>Time Tracking</strong>
+
+              <span>
+                Keep track of time spent working
+                and review your activity.
+              </span>
+            </div>
+
+            <div class="workplace-feature">
+              <strong>Deliveries</strong>
+
+              <span>
+                Monitor completed deliveries and
+                keep your work statistics organized.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="workplace-actions">
+
+            <!-- Download is intentionally unavailable until release. -->
+            <span
+              class="disabled-button"
+              aria-disabled="true"
+              title="The Workplace Alpha download is not available yet."
+            >
+              Alpha Download · Coming Soon
+            </span>
+
+            <!-- Replace # with the future Workplace page URL. -->
+            <a
+              href="#workplace"
+              class="button button-secondary"
+            >
+              Workplace Details
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </div>
+
+          <p class="availability-note" style="margin-top: 18px;">
+            Version 0.1.0.1 Alpha is planned for release.
+            Downloads will be announced when available.
+          </p>
+
+        </div>
+
+      </div>
     </section>
 
 
     <!-- POKEMON DARK SOULS -->
 
-    <section id="pokemon" class="detail-section">
-
+    <section class="section" id="pokemon">
       <div class="container">
 
-        <div class="detail-header">
+        <div class="section-heading">
+          <div class="section-label">05 / Project 003</div>
 
-          <div>
+          <h2>Pokémon Dark Souls</h2>
 
-            <div class="section-number">
-              PROJECT 003
-            </div>
-
-            <h2 class="detail-title">
-              Pokémon Dark Souls
-            </h2>
-
-            <p class="detail-subtitle">
-              A fan-made project developed by the Surgecord Team.
-              Follow the development process and upcoming builds,
-              including the Game Boy Icon Edition and SuperBoy Elite Edition.
-            </p>
-
-          </div>
-
-          <div class="status">
-            In Development
-          </div>
-
+          <p class="section-description">
+            A fan-made project developed by the Surgecord team.
+            Follow the development process as the world,
+            environments, and gameplay take shape.
+          </p>
         </div>
 
-
-        <!-- ROADMAP -->
 
         <div class="roadmap">
 
           <div class="roadmap-header">
+            <h3>Phase 1 · Concept & Foundation</h3>
 
-            <div>
-
-              <div class="phase">
-                Phase 01
-              </div>
-
-              <div class="phase-title">
-                Concept & Foundation
-              </div>
-
-            </div>
-
-            <div class="status">
-              In Progress
-            </div>
-
+            <span class="roadmap-status">
+              In Development
+            </span>
           </div>
 
 
-          <div class="roadmap-list">
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Conceptualization & story building
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Project start on RPG Maker XP
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Redesign of all assets, characters, and locations
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                World & region development
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Character & NPC development
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Pokémon roster & encounter planning
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Core gameplay systems
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Initial maps & environments
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                Early gameplay testing
-              </div>
-
-            </div>
-
-
-            <div class="roadmap-item">
-
-              <div class="roadmap-dot"></div>
-
-              <div class="roadmap-text">
-                First playable build
-              </div>
-
-            </div>
-
-          </div>
+          <ul class="roadmap-list">
+            <li>Conceptualization and story building</li>
+            <li>Project foundation using RPG Maker XP</li>
+            <li>Redesign of assets and characters</li>
+            <li>World and region development</li>
+            <li>Character and NPC development</li>
+            <li>Pokémon roster and encounter planning</li>
+            <li>Core gameplay systems</li>
+            <li>Initial maps and environments</li>
+            <li>Early gameplay testing</li>
+            <li>First playable build</li>
+          </ul>
 
         </div>
 
-      </div>
 
+        <div class="detail-copy" style="margin-top: 22px;">
+          <p>
+            Future development updates and playable builds
+            can be announced as the project progresses,
+            including work related to the Gameboy Icon
+            Edition and SuperBoy Elite Edition.
+          </p>
+        </div>
+
+      </div>
     </section>
 
 
     <!-- COMMUNITY -->
 
-    <section id="community" class="community">
-
+    <section class="section" id="community">
       <div class="container">
 
-        <div class="community-content">
+        <div class="community-box">
 
-          <div class="section-number">
-            04 · COMMUNITY
+          <div>
+            <div class="section-label">
+              06 / Community
+            </div>
+
+            <h3>Stay connected with Surgecord.</h3>
+
+            <p>
+              Join the Surgecord Discord community to follow
+              project announcements, receive development
+              updates, and explore the current version
+              of the RetroWorld bot.
+            </p>
           </div>
 
-          <h2>
-            Built together.
-          </h2>
 
-          <p>
-            Join the Surgecord Discord Server to stay up to date
-            with projects, announcements, development progress,
-            and the current version of RetroWorld Bot.
-          </p>
-
-          <!-- Replace # with your Discord invite -->
-          <a href="#" class="button primary">
-            Join the Discord
-          </a>
+          <div class="community-actions">
+            <!-- Replace # with your official Discord invite URL. -->
+            <a
+              href="#community"
+              class="button button-primary"
+              aria-label="Surgecord Discord — invite link coming soon"
+            >
+              Join the Community
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
   </main>
@@ -1475,19 +1536,24 @@
   <!-- FOOTER -->
 
   <footer>
-
     <div class="container footer-inner">
 
-      <div class="footer-brand">
-        SURGECORD
+      <div>
+        <a href="#home" class="brand">
+          <span class="brand-mark">S</span>
+          <span>SURGECORD</span>
+        </a>
+
+        <p class="footer-copy" style="margin-top: 12px;">
+          © 2026 Surgecord Network. Established 2025.
+        </p>
       </div>
 
-      <div class="footer-meta">
-        The Surgecord Network · Established 2025 · © 2026
+      <div class="footer-note">
+        Software · Preservation · Community
       </div>
 
     </div>
-
   </footer>
 
 </body>
